@@ -17,7 +17,11 @@ open class BaseRepository {
     suspend fun <T: Any> apiCall(call: suspend () -> Response<T> ): Response<T> {
         return call.invoke()
     }
-    
+
+    suspend fun <T: Any> call(call: suspend () -> T ): T {
+        return call.invoke()
+    }
+
     suspend fun <T : Any> safeApiCall(call: suspend () -> Result<T>, errorMessage: String = "Net error"):
             Result<T> {
         return try {
