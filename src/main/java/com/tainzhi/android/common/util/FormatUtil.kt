@@ -55,7 +55,7 @@ object FormatUtil {
         } else if (m > 0) {
             String.format("%.1fM", this.toFloat() / mbyte)
         } else if (k > 0) {
-            String.format("%.1fk", k)
+            "${k}K"
         } else {
             this.toString() + "B"
         }
