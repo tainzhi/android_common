@@ -11,11 +11,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.tainzhi.android.common.util.fromN
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.round
 
 /**
  * @author:      tainzhi
@@ -56,6 +59,7 @@ fun bindImage(imageView: ImageView, srcId: Int) {
         "imageUrl",
         "imagePlaceholder",
         "circleCropImage",
+        "roundCornerRadiusImage",
         "crossFadeImage",
         "overrideImageWidth",
         "overrideImageHeight",
@@ -64,21 +68,28 @@ fun bindImage(imageView: ImageView, srcId: Int) {
 )
 fun bindImage(
         imageView: ImageView,
-        imageUrl: String?,
+        imageUrl: String,
         placeholder: Int? = null,
         circleCrop: Boolean? = false,
+        roundCornerRadius: Int? = null,
         crossFade: Boolean? = false,
         overrideWidth: Int? = null,
         overrideHeight: Int? = null,
         listener: RequestListener<Drawable>?
 ) {
-    if (imageUrl == null) return
     var request = Glide.with(imageView.context).load(imageUrl)
     if (placeholder != null) {
         request = request.placeholder(placeholder)
     }
     if (circleCrop == true) {
         request = request.circleCrop()
+    }
+    if (roundCornerRadius != null) {
+        request = if (circleCrop == true) {
+            request.transform(CenterCrop(), RoundedCorners(roundCornerRadius))
+        } else {
+            request.transform(RoundedCorners(roundCornerRadius))
+        }
     }
     if (crossFade == true) {
         request = request.transition(DrawableTransitionOptions.withCrossFade())

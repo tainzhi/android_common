@@ -22,15 +22,17 @@ object FormatUtil {
      *
      * @param millisecond 毫秒
      */
-    fun formatMediaTime(millisecond: Long): String {
-        val h = millisecond.toInt() / hour
-        val m = millisecond.toInt() % hour / minute
-        val sec = millisecond.toInt() % minute / second
+    fun Long.formatMediaDuration(): String {
+        val h = this.toInt() / hour
+        val m = this.toInt() % hour / minute
+        val sec = this.toInt() % minute / second
         return if (h > 0) {
             //"hh:mm:ss" "1:36:2"
             String.format("%02d:%02d:%02d", h, m, sec)
-        } else {
+        } else if (m > 0){
             String.format("%02d:%02d", m, sec)
+        } else {
+            String.format("00:%02d", sec)
         }
     }
 
@@ -40,33 +42,30 @@ object FormatUtil {
      * @param size 字节大小
      * @return 可读字节大小, 单位为B, KB, MB, GB
      */
-    fun formatMediaSize(size: Long): String {
+    fun Long.formatMediaSize(): String {
         // 5B
-        // 5KB
-        // 5MB
-        // 5GB
-        val k = size.toInt() % kbyte
-        val m = size.toInt() / mbyte
-        val g = size.toInt() / gbyte
+        // 5.1K
+        // 5.1M
+        // 5.1G
+        val k = this.toInt() % kbyte
+        val m = this.toInt() / mbyte
+        val g = this.toInt() / gbyte
         return if (g > 0) {
-            g.toString() + "GB"
+            String.format("%.1fG", this.toFloat() / gbyte)
         } else if (m > 0) {
-            m.toString() + "MB"
+            String.format("%.1fM", this.toFloat() / mbyte)
         } else if (k > 0) {
-            k.toString() + "KB"
+            String.format("%.1fk", k)
         } else {
-            size.toString() + "B"
+            this.toString() + "B"
         }
     }
 
-    fun formatDate(date: String?): String? {
-        if (date == null) {
-            return null
-        }
-        val year = date.substring(0, 4)
-        val month = date.substring(4, 6)
-        val day = date.substring(6, 8)
-        return "$year/$month/$day"
+    /**
+     * 获取mm/dd/yyyy格式时间
+     */
+    fun Long.formatMediaDate(): String {
+        return SimpleDateFormat("MM/dd/yyyy").format(Date(this))
     }
 
     /**
