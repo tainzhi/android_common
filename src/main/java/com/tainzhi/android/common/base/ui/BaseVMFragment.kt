@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 
 /**
  * @author:       tainzhi
@@ -15,14 +18,13 @@ import androidx.fragment.app.Fragment
  * @description:
  **/
 
-abstract class BaseVMFragment<VM: BaseViewModel>(useBinding: Boolean = false): Fragment() {
+abstract class BaseVMFragment<VM: BaseViewModel>(val useBinding: Boolean = false): Fragment(), CoroutineScope by MainScope() {
 
-    private val _useBinding = useBinding
     protected lateinit var mBinding: ViewDataBinding
     protected lateinit var mViewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return if (_useBinding) {
+        return if (useBinding) {
             mBinding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
             mBinding.lifecycleOwner = viewLifecycleOwner
             mBinding.root
@@ -36,6 +38,11 @@ abstract class BaseVMFragment<VM: BaseViewModel>(useBinding: Boolean = false): F
         initData()
         startObserve()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancel()
     }
 
     abstract fun getLayoutResId(): Int

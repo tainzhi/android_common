@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -16,9 +18,16 @@ import kotlinx.coroutines.cancel
  * @description:
  **/
 
-abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment(private val useBinding: Boolean = false) : Fragment(), CoroutineScope by MainScope() {
+    protected lateinit var mBinding: ViewDataBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getLayoutResId(), container, false)
+        return if (useBinding) {
+            mBinding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
+            mBinding.lifecycleOwner = viewLifecycleOwner
+            mBinding.root
+        } else
+            inflater.inflate(getLayoutResId(), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,3 +47,4 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
         cancel()
     }
 }
+
