@@ -14,7 +14,7 @@ import kotlin.reflect.KProperty
  * @description:
  **/
 
-class AutoCleardValue<T : Any>(val fragment: Fragment) : ReadWriteProperty<Fragment, T> {
+class AutoClearedValue<T : Any>(val fragment: Fragment) : ReadWriteProperty<Fragment, T> {
     private var _value: T? = null
     
     init {
@@ -36,4 +36,4 @@ class AutoCleardValue<T : Any>(val fragment: Fragment) : ReadWriteProperty<Fragm
     }
 }
 
-fun <T : Any> Fragment.autoClearedValue() = AutoCleardValue<T>(this)
+fun <T : Any> Fragment.autoClearedValue() = AutoClearedValue<T>(this)
