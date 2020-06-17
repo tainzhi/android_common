@@ -17,7 +17,12 @@ import androidx.appcompat.widget.AppCompatTextView
  *   继承TextView。重写isFocused方法，这个方法默认行为是，
  *   如果TextView获得焦点，方法返回true，失去焦点则返回false
  *   跑马灯效果估计也是用这个方法判断是否获得焦点，所以把它的返回值始终设置为true。
+ *
+ *
+ *   当然也可以直接使用 TextView, 并 textView.requestFocus(), textView.isSelected = true
+ *
  * 实现参考: [https://www.cnblogs.com/McCa/p/4505211.html]
+ *
  **/
 
 class AutoScrollHorizontalView @JvmOverloads constructor(
