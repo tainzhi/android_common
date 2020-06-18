@@ -21,7 +21,6 @@ abstract class BaseVMActivity<VM : BaseViewModel>(useBinding: Boolean = false): 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mViewModel = initVM()
-        startObserve()
 
         if (_useBinding) {
             mBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, getLayoutResId())
@@ -31,6 +30,7 @@ abstract class BaseVMActivity<VM : BaseViewModel>(useBinding: Boolean = false): 
         }
         initView()
         initData()
+        startObserve()
     }
 
     open fun getLayoutResId(): Int = 0
