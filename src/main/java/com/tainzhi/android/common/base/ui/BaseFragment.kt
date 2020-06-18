@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -18,7 +17,7 @@ import kotlinx.coroutines.cancel
  * @description:
  **/
 
-abstract class BaseFragment(private val useBinding: Boolean = false) : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment(private val useBinding: Boolean = false) : MainNavigationFragment(), CoroutineScope by MainScope() {
     protected lateinit var mBinding: ViewDataBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
