@@ -18,7 +18,6 @@ import com.bumptech.glide.request.RequestListener
 import com.tainzhi.android.common.util.fromN
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.round
 
 /**
  * @author:      tainzhi
@@ -68,7 +67,7 @@ fun bindImage(imageView: ImageView, srcId: Int) {
 )
 fun bindImage(
         imageView: ImageView,
-        imageUrl: String,
+        imageUrl: String?,
         placeholder: Int? = null,
         circleCrop: Boolean? = false,
         roundCornerRadius: Int? = null,
@@ -77,6 +76,7 @@ fun bindImage(
         overrideHeight: Int? = null,
         listener: RequestListener<Drawable>?
 ) {
+    if (imageUrl == null) return
     var request = Glide.with(imageView.context).load(imageUrl)
     if (placeholder != null) {
         request = request.placeholder(placeholder)
