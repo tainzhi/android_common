@@ -42,11 +42,11 @@ open class BaseRepository {
                                         errorBlock: (suspend CoroutineScope.() -> Unit) ?= null):
             Result<T> {
         return coroutineScope {
-            if (response.errorCode == -1) {
+            if (response.error == -1) {
                 errorBlock?.let { it() }
-                Result.Error(IOException("errorCode=-1, ${response.errorMsg}"))
+                Result.Error(IOException("errorCode=-1, ${response.error}"))
             } else {
-                successBlock?.let{ it()}
+                successBlock?.let { it() }
                 Result.Success(response.data)
             }
 

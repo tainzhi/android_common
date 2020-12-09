@@ -1,7 +1,5 @@
 package com.tainzhi.android.common.base
 
-import java.io.Serializable
-
 /**
  * @author:       tainzhi
  * @mail:         qfq61@qq.com
@@ -9,4 +7,4 @@ import java.io.Serializable
  * @description:
  **/
 
-data class Response<out T>(val errorCode: Int, val errorMsg: String, val data: T) : Serializable
+data class Response<out T>(val error: Int?, val msg: String?, val data: T)

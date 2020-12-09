@@ -41,7 +41,9 @@ dependencies {
     api(Libs.AndroidX.coreKtx)
     api(Libs.Coroutines.android)
     api(Libs.Retrofit.retrofit)
-    api(Libs.Retrofit.gsonConverter)
+    api(Libs.Retrofit.moshiConverter)
+    api(Libs.Moshi.moshi)
+    kapt(Libs.Moshi.codeGen)
     api(Libs.OkHttp.loggingInterceptor)
     api(Libs.Glide.glide)
 

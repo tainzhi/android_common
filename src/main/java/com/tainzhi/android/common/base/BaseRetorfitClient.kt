@@ -1,10 +1,12 @@
 package com.tainzhi.android.common.base
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tainzhi.android.common.isLoggable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -43,7 +45,11 @@ abstract class BaseRetrofitClient {
     fun <S> getService(serviceClass: Class<S>, baseUrl: String): S {
         return Retrofit.Builder()
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(
+                        MoshiConverterFactory.create(
+                                Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                        )
+                )
                 .baseUrl(baseUrl)
                 .build().create(serviceClass)
     }
