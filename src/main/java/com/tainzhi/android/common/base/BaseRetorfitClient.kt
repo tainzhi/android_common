@@ -2,9 +2,7 @@ package com.tainzhi.android.common.base
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.tainzhi.android.common.isLoggable
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -25,18 +23,8 @@ abstract class BaseRetrofitClient {
     private val client: OkHttpClient
         get() {
             val builder = OkHttpClient.Builder()
-            val logging = HttpLoggingInterceptor()
-            if (isLoggable) {
-                logging.level = HttpLoggingInterceptor.Level.BODY
-            } else {
-                logging.level = HttpLoggingInterceptor.Level.BASIC
-            }
-
-            builder.addInterceptor(logging)
-                    .connectTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
-
+            builder.connectTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
             handleBuilder(builder)
-
             return builder.build()
         }
 
