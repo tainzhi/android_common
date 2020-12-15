@@ -14,7 +14,7 @@ import java.net.UnknownHostException
  **/
 
 open class BaseRepository {
-    suspend fun <T: Any> apiCall(call: suspend () -> Response<T> ): Response<T> {
+    suspend fun <T : Any> apiCall(call: suspend () -> ResponseBody<T>): ResponseBody<T> {
         return call.invoke()
     }
 
@@ -37,9 +37,9 @@ open class BaseRepository {
         }
     }
 
-    suspend fun <T: Any> executeResponse(response: Response<T>,
-                                        successBlock: (suspend CoroutineScope.() -> Unit) ?= null,
-                                        errorBlock: (suspend CoroutineScope.() -> Unit) ?= null):
+    suspend fun <T : Any> executeResponse(response: ResponseBody<T>,
+                                          successBlock: (suspend CoroutineScope.() -> Unit)? = null,
+                                          errorBlock: (suspend CoroutineScope.() -> Unit)? = null):
             Result<T> {
         return coroutineScope {
             if (response.error == -1) {

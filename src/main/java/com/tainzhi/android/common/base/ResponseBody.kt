@@ -7,4 +7,4 @@ package com.tainzhi.android.common.base
  * @description:
  **/
 
-data class Response<out T>(val error: Int?, val msg: String?, val data: T)
+data class ResponseBody<out T>(val error: Int?, val msg: String?, val data: T)
