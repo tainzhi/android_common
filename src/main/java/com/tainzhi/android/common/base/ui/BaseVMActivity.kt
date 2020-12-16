@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
 
 /**
  * @author:       tainzhi
@@ -12,7 +13,7 @@ import androidx.databinding.ViewDataBinding
  * @description:
  **/
 
-abstract class BaseVMActivity<VM : BaseViewModel>(useBinding: Boolean = false): AppCompatActivity
+abstract class BaseVMActivity<VM : ViewModel>(useBinding: Boolean = false) : AppCompatActivity
 () {
     private val _useBinding = useBinding
     protected lateinit var mBinding: ViewDataBinding
