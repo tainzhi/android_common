@@ -38,9 +38,9 @@ abstract class BaseFragment(private val useBinding: Boolean = false) : Fragment(
 
     abstract fun getLayoutResId(): Int
 
-    abstract fun initView()
+    open fun initView() {}
 
-    abstract fun initData()
+    open fun initData() {}
 
     override fun onDestroy() {
         super.onDestroy()

@@ -32,8 +32,8 @@ abstract class BaseActivity(useBinding: Boolean = false) : AppCompatActivity(), 
     }
 
     abstract fun getLayoutResId(): Int
-    abstract fun initView()
-    abstract fun initData()
+    open fun initView() {}
+    open fun initData() {}
 
     override fun onDestroy() {
         super.onDestroy()

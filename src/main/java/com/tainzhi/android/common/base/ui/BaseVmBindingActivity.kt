@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
 
 /**
  * @author:       tainzhi
@@ -12,7 +13,7 @@ import androidx.databinding.ViewDataBinding
  * @description:
  **/
 
-abstract class BaseVmBindingActivity<VM : BaseViewModel, BD:ViewDataBinding>: AppCompatActivity
+abstract class BaseVmBindingActivity<VM : ViewModel, BD : ViewDataBinding> : AppCompatActivity
 () {
     protected lateinit var mBinding: BD
     lateinit var mViewModel: VM

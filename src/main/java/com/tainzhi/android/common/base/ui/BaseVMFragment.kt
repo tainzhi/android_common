@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -18,7 +19,7 @@ import kotlinx.coroutines.cancel
  * @description:
  **/
 
-abstract class BaseVMFragment<VM: BaseViewModel>(val useBinding: Boolean = false): Fragment(), CoroutineScope by MainScope() {
+abstract class BaseVMFragment<VM : ViewModel>(val useBinding: Boolean = false) : Fragment(), CoroutineScope by MainScope() {
 
     protected lateinit var mBinding: ViewDataBinding
     protected lateinit var mViewModel: VM

@@ -35,9 +35,9 @@ abstract class BaseBindingFragment<BD : ViewDataBinding> : Fragment(), Coroutine
 
     abstract fun getLayoutResId(): Int
 
-    abstract fun initView()
+    open fun initView() {}
 
-    abstract fun initData()
+    open fun initData() {}
 
     override fun onDestroy() {
         super.onDestroy()
