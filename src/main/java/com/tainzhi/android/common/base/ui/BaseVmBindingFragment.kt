@@ -45,7 +45,7 @@ abstract class BaseVmBindingFragment<VM : ViewModel, BD : ViewDataBinding> : Fra
 
     abstract fun getLayoutResId(): Int
     abstract fun initVM(): VM
-    abstract fun initView()
-    abstract fun initData()
-    abstract fun startObserve()
+    open fun initView() {}
+    open fun initData() {}
+    open fun startObserve() {}
 }
