@@ -30,9 +30,9 @@ abstract class BaseVmBindingActivity<VM : ViewModel, BD : ViewDataBinding> : App
         startObserve()
     }
 
-    open fun getLayoutResId(): Int = 0
+    abstract fun getLayoutResId(): Int
     abstract fun initVM(): VM
-    abstract fun initView()
-    abstract fun initData()
+    open fun initView() {}
+    open fun initData() {}
     abstract fun startObserve()
 }
