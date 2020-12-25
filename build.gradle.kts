@@ -39,6 +39,8 @@ dependencies {
     api(Libs.AndroidX.Lifecycle.livedata)
     api(Libs.AndroidX.appcompat)
     api(Libs.AndroidX.coreKtx)
+    api(Libs.AndroidX.constraintlayout)
+    api(Libs.Google.material)
     api(Libs.Coroutines.android)
     api(Libs.Retrofit.retrofit)
     api(Libs.Retrofit.moshiConverter)

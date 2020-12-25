@@ -4,6 +4,11 @@
 	<attr name="alphaEmphasisMedium" format="float" />
 	<attr name="alphaEmphasisDisabled" format="float" />
 	
+	
+	<declare-styleable name="InterceptTouchLayout">
+		<attr name="android:orientation" />
+	</declare-styleable>
+	
 	<declare-styleable name="SetItemView">
 		<attr name="needDivideLine" format="boolean" />
 		<attr name="needRightArrow" format="boolean" />
