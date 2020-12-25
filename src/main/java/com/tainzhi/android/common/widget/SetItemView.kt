@@ -13,7 +13,7 @@ import com.tainzhi.android.common.R
  * Author:   tainzhi
  * Created:  2020/12/25 13:22
  * Mail:     QFQ61@qq.com
- * Description:
+ * Description: 单设置Item
  */
 class SetItemView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

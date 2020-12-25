@@ -14,7 +14,9 @@ import kotlin.math.abs
  * Author:   tainzhi
  * Created:  2020/12/17 20:18
  * Mail:     QFQ61@qq.com
- * Description: 用于解决ViewPager2和RecyclerView的滑动冲突, 用法如下
+ * Description: 用于解决ViewPager2和RecyclerView的滑动冲突
+ *
+ * 用法如下
  * // ViewPager2水平滑动, Recyclerview竖直滑动, 必须要在 InterceptTouchLayout中添加数值方向
  * <ViewPager2>
  *     <InterceptTouchLayout
