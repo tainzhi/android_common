@@ -34,5 +34,5 @@ abstract class BaseVmBindingActivity<VM : ViewModel, BD : ViewDataBinding> : App
     abstract fun initVM(): VM
     open fun initView() {}
     open fun initData() {}
-    abstract fun startObserve()
+    open fun startObserve() {}
 }

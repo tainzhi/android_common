@@ -3,8 +3,8 @@ package com.tainzhi.android.common.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.tainzhi.android.common.R
 
@@ -17,10 +17,9 @@ import com.tainzhi.android.common.R
  */
 class SetItemView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
     init {
         View.inflate(context, R.layout.set_item_view, this)
-
 
         attrs?.let {
             val a = context.obtainStyledAttributes(it, R.styleable.SetItemView)
