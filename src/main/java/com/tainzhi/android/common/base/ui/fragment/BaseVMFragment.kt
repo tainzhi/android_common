@@ -1,10 +1,9 @@
-package com.tainzhi.android.common.base.ui
+package com.tainzhi.android.common.base.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -19,18 +18,13 @@ import kotlinx.coroutines.cancel
  * @description:
  **/
 
-abstract class BaseVMFragment<VM : ViewModel>(val useBinding: Boolean = false) : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseVMFragment<VM : ViewModel> : Fragment(), CoroutineScope by MainScope() {
 
     protected lateinit var mBinding: ViewDataBinding
     protected lateinit var mViewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return if (useBinding) {
-            mBinding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
-            mBinding.lifecycleOwner = viewLifecycleOwner
-            mBinding.root
-        } else
-            inflater.inflate(getLayoutResId(), container, false)
+        return inflater.inflate(getLayoutResId(), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

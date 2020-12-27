@@ -1,4 +1,4 @@
-package com.tainzhi.android.common.base.ui
+package com.tainzhi.android.common.base.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 
 /**
  * @author:       tainzhi
@@ -19,10 +15,10 @@ import kotlinx.coroutines.cancel
  * @description:
  **/
 
-abstract class BaseVmBindingFragment<VM : ViewModel, BD : ViewDataBinding> : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseVmBindingFragment<VM : ViewModel, BD : ViewDataBinding> : BaseFragment() {
 
-    protected lateinit var mBinding: BD
     protected lateinit var mViewModel: VM
+    protected lateinit var mBinding: BD
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
@@ -33,19 +29,9 @@ abstract class BaseVmBindingFragment<VM : ViewModel, BD : ViewDataBinding> : Fra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mViewModel = initVM()
-        initView()
-        initData()
         startObserve()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        cancel()
-    }
-
-    abstract fun getLayoutResId(): Int
     abstract fun initVM(): VM
-    open fun initView() {}
-    open fun initData() {}
     open fun startObserve() {}
 }
