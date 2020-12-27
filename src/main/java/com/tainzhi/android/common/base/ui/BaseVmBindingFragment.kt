@@ -31,11 +31,11 @@ abstract class BaseVmBindingFragment<VM : ViewModel, BD : ViewDataBinding> : Fra
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mViewModel = initVM()
         initView()
         initData()
         startObserve()
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroy() {
