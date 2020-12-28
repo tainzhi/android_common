@@ -1,6 +1,8 @@
 package com.tainzhi.android.common.util
 
 import android.content.Context
+import android.content.res.Resources
+import android.util.TypedValue
 import android.view.View
 
 /**
@@ -49,4 +51,14 @@ fun View.dp2px(dp: Int): Int {
 fun View.px2dp(px: Int): Int {
     val scale = resources.displayMetrics.density
     return (px / scale + 0.5f).toInt()
+}
+
+// dp转px
+fun Int.dp(): Int {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+}
+
+// dp转px
+fun Float.dp(): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
 }

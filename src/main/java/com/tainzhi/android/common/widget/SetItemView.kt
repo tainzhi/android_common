@@ -19,7 +19,7 @@ class SetItemView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
     init {
-        View.inflate(context, R.layout.set_item_view, this)
+        inflate(context, R.layout.set_item_view, this)
 
         attrs?.let {
             val a = context.obtainStyledAttributes(it, R.styleable.SetItemView)
@@ -34,5 +34,7 @@ class SetItemView @JvmOverloads constructor(
 
             a.recycle()
         }
+
     }
+
 }
