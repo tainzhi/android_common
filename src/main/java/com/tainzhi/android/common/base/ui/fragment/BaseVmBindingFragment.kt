@@ -27,8 +27,10 @@ abstract class BaseVmBindingFragment<VM : ViewModel, BD : ViewDataBinding> : Bas
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        // initVM() 一定要在super.onViewCreated()之前执行
+        // 因为super.onViewCreated() -> initView() ->需要用到ViewModel
         mViewModel = initVM()
+        super.onViewCreated(view, savedInstanceState)
         startObserve()
     }
 

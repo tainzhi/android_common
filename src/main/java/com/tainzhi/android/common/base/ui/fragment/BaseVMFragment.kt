@@ -32,7 +32,6 @@ abstract class BaseVMFragment<VM : ViewModel> : Fragment(), CoroutineScope by Ma
         initView()
         initData()
         startObserve()
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroy() {
