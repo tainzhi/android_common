@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
  * @author:       tainzhi
  * @mail:         qfq61@qq.com
  * @date:         2020/1/18 15:26
- * @description:
+ * @description:  Activity使用 ViewModel && ViewDataBinding
  **/
 
 abstract class BaseVmBindingActivity<VM : ViewModel, BD : ViewDataBinding> : AppCompatActivity

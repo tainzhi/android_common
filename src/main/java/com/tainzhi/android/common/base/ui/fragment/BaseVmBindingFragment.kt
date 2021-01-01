@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
  * @author:       tainzhi
  * @mail:         qfq61@qq.com
  * @date:         2020/1/18 15:28
- * @description:
+ * @description:  使用 ViewModel, ViewDataBinding 的Fragment
  **/
 
 abstract class BaseVmBindingFragment<VM : ViewModel, BD : ViewDataBinding> : BaseFragment() {
