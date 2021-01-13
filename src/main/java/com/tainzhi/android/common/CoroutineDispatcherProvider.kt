@@ -13,10 +13,12 @@ import kotlinx.coroutines.Dispatchers.Main
  * @description:
  **/
 
-data class CoroutinesDispatcherProvider(
+data class CoroutineDispatcherProvider(
         val main: CoroutineDispatcher = Dispatchers.Main,
         val default: CoroutineDispatcher = Dispatchers.Default,
         val io: CoroutineDispatcher = Dispatchers.IO
 ) {
-    constructor(): this(Main, Default, IO)
+    constructor() : this(Main, Default, IO)
+
+    val mainImmediate = Dispatchers.Main.immediate
 }

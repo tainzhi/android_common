@@ -2,7 +2,9 @@ package com.tainzhi.android.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * File:     BaseViewModel
@@ -11,11 +13,19 @@ import kotlinx.coroutines.launch
  * Mail:     QFQ61@qq.com
  * Description:
  */
-open class BaseViewModel(private val coroutinesDispatcherProvider: CoroutinesDispatcherProvider) :
+open class BaseViewModel(private val coroutineDispatcherProvider: CoroutineDispatcherProvider) :
         ViewModel() {
-    fun launchIO(task: () -> Unit) {
-        viewModelScope.launch(coroutinesDispatcherProvider.io) {
-            task.invoke()
+    fun launchIO(task: suspend CoroutineScope.() -> Unit) {
+        viewModelScope.launch {
+            withContext(coroutineDispatcherProvider.io) {
+                task()
+            }
+        }
+    }
+
+    fun launch(task: suspend CoroutineScope.() -> Unit) {
+        viewModelScope.launch(coroutineDispatcherProvider.default) {
+            task()
         }
     }
 }
