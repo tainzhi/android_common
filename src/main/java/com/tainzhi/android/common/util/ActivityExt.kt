@@ -178,6 +178,9 @@ fun Context.isForeGround(): Boolean {
     return false
 }
 
+/**
+ * hide statusbar and navigation bar, fullscreen
+ */
 fun Activity.hideSystemUiAndNavigation() {
     val decorView: View = this.window.decorView
     decorView.systemUiVisibility =
@@ -189,5 +192,15 @@ fun Activity.hideSystemUiAndNavigation() {
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN // Hide the nav bar and status bar
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_FULLSCREEN)
+}
+
+/**
+ * only hide navigation
+ */
+fun Activity.hideNavigation() {
+    val decorView: View = this.window.decorView
+    decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 }
 
