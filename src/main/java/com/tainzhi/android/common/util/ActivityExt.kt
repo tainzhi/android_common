@@ -7,6 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -144,6 +145,19 @@ inline fun <reified T : Context> Context.getIntent(
                     }
             }
         }
+
+fun Activity.screenWidth(): Int {
+    val dm = DisplayMetrics()
+    this.windowManager.defaultDisplay.getMetrics(dm)
+    return dm.widthPixels
+}
+
+fun Activity.screenHeight(): Int {
+    val dm = DisplayMetrics()
+    this.windowManager.defaultDisplay.getMetrics(dm)
+    return dm.heightPixels
+}
+
 
 fun Activity.hideKeyboard() {
     inputMethodManager?.hideSoftInputFromWindow((currentFocus ?: View(this)).windowToken, 0)
