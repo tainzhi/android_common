@@ -38,6 +38,8 @@ dependencies {
     api(Libs.AndroidX.Lifecycle.livedata)
     api(Libs.AndroidX.appcompat)
     api(Libs.AndroidX.coreKtx)
+    api(Libs.AndroidX.Fragment.fragment)
+    api(Libs.AndroidX.Fragment.fragmentKtx)
     api(Libs.AndroidX.constraintlayout)
     api(Libs.Google.material)
     api(Libs.Coroutines.android)
